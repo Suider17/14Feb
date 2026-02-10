@@ -70,22 +70,24 @@ const selectOption = (index) => {
 };
 
 // Timer logic reused
-const timeLeft = ref(10.0);
+// Timer logic reused from PuzzleView
+const timeLeft = ref(30.0); // Start at 30s
 const isCritical = ref(false);
 let timerInterval = null;
 
 const displayTime = computed(() => {
-    if (isCritical.value) return timeLeft.value.toFixed(10);
-    return timeLeft.value.toFixed(1);
+    return timeLeft.value.toFixed(2);
 });
 
 onMounted(() => {
     timerInterval = setInterval(() => {
-        if (timeLeft.value > 0.1) {
+        if (timeLeft.value > 0.5) {
             timeLeft.value -= 0.1;
         } else {
             isCritical.value = true;
-            timeLeft.value = timeLeft.value * 0.999;
+            // Zeno's paradox style decay
+            timeLeft.value = 0.01 + (timeLeft.value - 0.01) * 0.98;
+             if (timeLeft.value < 0.01) timeLeft.value = 0.01;
         }
     }, 100);
 });

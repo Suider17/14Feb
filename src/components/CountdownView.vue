@@ -1,5 +1,9 @@
 <template>
   <div class="countdown-view">
+    <div class="carousel-container">
+        <Carousel />
+    </div>
+    
     <div v-if="timeLeft > 0" class="timer">
       <h1>Cuenta regresiva para San Valentín</h1>
       <div class="time-display">
@@ -20,6 +24,7 @@
           <span class="label">Segundos</span>
         </div>
       </div>
+      <!-- <button @click="$emit('start')" class="debug-btn">Debug: Start Now 🚀</button> -->
     </div>
     <div v-else class="start-section">
       <h1>¡Es hora!</h1>
@@ -31,6 +36,7 @@
 
 <script setup>
 import { ref, computed, onMounted, onUnmounted } from 'vue';
+import Carousel from './Carousel.vue';
 
 const targetDate = new Date('2026-02-14T12:00:00'); // Fixed to 2026 for now based on user context
 const now = ref(new Date());
@@ -59,10 +65,18 @@ onUnmounted(() => {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  height: 100%;
+  justify-content: center; /* keep centered vertically */
+  min-height: 100%;
   color: white;
   text-align: center;
+  padding: 20px 0;
+  overflow-y: auto; /* Allow scrolling if carousel pushes content */
+}
+
+.carousel-container {
+    margin-bottom: 30px;
+    width: 100%;
+    margin-top: 20px;
 }
 
 .time-display {
@@ -118,5 +132,9 @@ onUnmounted(() => {
 
 .start-btn:hover {
   transform: scale(1.1);
+}
+
+.debug-btn {
+  display: none; /* Hidden requested by user */
 }
 </style>

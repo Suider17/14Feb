@@ -16,7 +16,6 @@
         class="no-btn"
         :style="noStyle"
         @click="handleNoClick"
-        @mouseover="moveNoButton" 
       >
         NO
       </button>

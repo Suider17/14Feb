@@ -1,7 +1,7 @@
 <template>
   <div class="final-view">
     <ExplodingFlowers />
-    <div class="content">
+    <div class="final-content">
       <h1>¡Feliz San Valentín! ❤️</h1>
       <p class="message-text">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
@@ -27,12 +27,21 @@ import ExplodingFlowers from './ExplodingFlowers.vue';
   height: 100%;
   position: relative;
   z-index: 20;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Vertically center the content */
+  align-items: center;     /* Horizontally center */
 }
 
-.content {
+.final-content {
   position: relative;
   z-index: 30; /* Above flowers */
-  padding-top: 50px;
+  max-width: 800px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
 }
 
 .message-text {

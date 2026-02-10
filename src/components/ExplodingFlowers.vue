@@ -30,10 +30,10 @@ const getFlowerStyle = (n) => {
 };
 
 onMounted(() => {
-    // Start spawning flowers
+    // Start spawning flowers - Slower rate
     const interval = setInterval(() => {
-        if (count.value < 50) count.value++;
-    }, 100);
+        if (count.value < 30) count.value++; // Reduced max count
+    }, 400); // Slower interval
 });
 </script>
 
@@ -45,19 +45,19 @@ onMounted(() => {
     width: 100%;
     height: 100%;
     pointer-events: none;
-    z-index: 100;
+    z-index: 1; /* Below content */
 }
 
 .flower {
     position: absolute;
-    font-size: 50px;
-    animation: growAndPop 2s forwards;
+    font-size: 40px; /* Slightly smaller base */
+    animation: growAndPop 3s forwards; /* Slower animation */
     opacity: 0;
 }
 
 @keyframes growAndPop {
-    0% { transform: scale(0); opacity: 1; }
-    80% { transform: scale(3); opacity: 1; }
-    100% { transform: scale(4); opacity: 0; }
+    0% { transform: scale(0); opacity: 0.8; }
+    80% { transform: scale(1.5); opacity: 0.8; } /* Reduced max scale */
+    100% { transform: scale(2); opacity: 0; }
 }
 </style>
