@@ -6,10 +6,11 @@
     <main class="content">
       <CountdownView v-if="currentPhase === 'COUNTDOWN'" @start="nextPhase" />
       <TrickQuestionView v-else-if="currentPhase === 'TRICK'" @completed="nextPhase" />
-      <TransitionScreen v-else-if="currentPhase === 'TRANSITION_1'" @completed="nextPhase" :text="'¡Sabía que dirías que sí!'" />
+      <TransitionScreen v-else-if="currentPhase === 'TRANSITION_1'" @completed="nextPhase" :text="'¡Sabía que dirías que sí!'" buttonText="¡Vamos! 🚀" />
       <PuzzleView v-else-if="currentPhase === 'PUZZLE'" @completed="nextPhase" />
-      <TransitionScreen v-else-if="currentPhase === 'TRANSITION_2'" @completed="nextPhase" :text="'¡Eres increíble armando rompecabezas!'" />
+      <TransitionScreen v-else-if="currentPhase === 'TRANSITION_2'" @completed="nextPhase" :text="'¡Eres increíble armando rompecabezas!'" buttonText="¡A por la trivia! 🧠" />
       <TriviaView v-else-if="currentPhase === 'TRIVIA'" @completed="nextPhase" />
+      <TransitionScreen v-else-if="currentPhase === 'TRANSITION_3'" @completed="nextPhase" :text="'¡Felicidades, lograste todo!'" :showFireworks="true" buttonText="Ver sorpresa final ✨" />
       <FinalView v-else-if="currentPhase === 'FINAL'" />
     </main>
   </div>
@@ -26,7 +27,7 @@ import TriviaView from './components/TriviaView.vue';
 import FinalView from './components/FinalView.vue';
 import TransitionScreen from './components/TransitionScreen.vue';
 
-const phases = ['COUNTDOWN', 'TRICK', 'TRANSITION_1', 'PUZZLE', 'TRANSITION_2', 'TRIVIA', 'FINAL'];
+const phases = ['COUNTDOWN', 'TRICK', 'TRANSITION_1', 'PUZZLE', 'TRANSITION_2', 'TRIVIA', 'TRANSITION_3', 'FINAL'];
 const currentPhaseIndex = ref(0);
 const currentPhase = ref(phases[0]);
 

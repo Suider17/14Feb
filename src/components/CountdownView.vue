@@ -24,7 +24,7 @@
           <span class="label">Segundos</span>
         </div>
       </div>
-      <!-- <button @click="$emit('start')" class="debug-btn">Debug: Start Now 🚀</button> -->
+      <button @click="$emit('start')" class="debug-btn">Debug: Start Now 🚀</button>
     </div>
     <div v-else class="start-section">
       <h1>¡Es hora!</h1>
@@ -134,7 +134,5 @@ onUnmounted(() => {
   transform: scale(1.1);
 }
 
-.debug-btn {
-  display: none; /* Hidden requested by user */
-}
+
 </style>

@@ -1,6 +1,5 @@
 <template>
   <div class="final-view">
-    <ExplodingFlowers />
     <div class="final-content">
       <h1>¡Feliz San Valentín! ❤️</h1>
       <p class="message-text">
@@ -16,7 +15,6 @@
 
 <script setup>
 import Carousel from './Carousel.vue';
-import ExplodingFlowers from './ExplodingFlowers.vue';
 </script>
 
 <style scoped>

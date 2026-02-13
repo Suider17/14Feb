@@ -1,6 +1,17 @@
 <template>
   <div class="trivia-view">
     <h2>Trivia de Amor</h2>
+    
+    <div class="image-feedback-container">
+      <BluryImage 
+        v-if="currentImage" 
+        :src="currentImage" 
+        width="150px" 
+        height="150px" 
+        class="trivia-img" 
+      />
+    </div>
+
     <div class="timer" :class="{ critical: isCritical }">Tiempo: {{ displayTime }}</div>
     
     <div v-if="currentQuestionIndex < questions.length" class="question-card">
@@ -10,6 +21,7 @@
           v-for="(option, index) in questions[currentQuestionIndex].options" 
           :key="index"
           @click="selectOption(index)"
+          :disabled="isProcessing"
           :class="{ 
             wrong: selectedIndex === index && !isCorrect,
             correct: selectedIndex === index && isCorrect
@@ -18,15 +30,21 @@
           {{ option }}
         </button>
       </div>
-       <p v-if="selectedIndex !== null && !isCorrect" class="error-msg">¡Ups! Intenta de nuevo ❤️</p>
+      <div class="feedback-area">
+        <p v-if="selectedIndex !== null && !isCorrect" class="error-msg">¡Ups! Intenta de nuevo ❤️</p>
+      </div>
     </div>
   </div>
 </template>
 
 <script setup>
-import { ref, computed, onMounted, onUnmounted } from 'vue';
+import { ref, computed, onMounted, onUnmounted, watch } from 'vue';
+import { GOOD_IMAGES, BAD_IMAGES, getRandomItem } from '@/utils/imageSets';
+import BluryImage from './BluryImage.vue';
 
 const emit = defineEmits(['completed']);
+
+const LAST_QUESTION_IMAGE = 'src/assets/images/trivia/LastQimage.jpg'; // Specific fixed image
 
 const questions = [
   {
@@ -49,23 +67,61 @@ const questions = [
 const currentQuestionIndex = ref(0);
 const selectedIndex = ref(null);
 const isCorrect = ref(false);
+const currentImage = ref(null);
+const isProcessing = ref(false);
+
+const updateTriviaImage = () => {
+    if (currentQuestionIndex.value === questions.length - 1) {
+        currentImage.value = LAST_QUESTION_IMAGE;
+    } else {
+        currentImage.value = getRandomItem(GOOD_IMAGES);
+    }
+};
+
+onMounted(() => {
+    updateTriviaImage();
+    timerInterval = setInterval(() => {
+        if (timeLeft.value > 0.5) {
+            timeLeft.value -= 0.1;
+        } else {
+            isCritical.value = true;
+            // Zeno's paradox style decay
+            timeLeft.value = 0.01 + (timeLeft.value - 0.01) * 0.98;
+             if (timeLeft.value < 0.01) timeLeft.value = 0.01;
+        }
+    }, 100);
+});
 
 const selectOption = (index) => {
+    if (isProcessing.value) return;
     selectedIndex.value = index;
+    
     if (index === questions[currentQuestionIndex.value].correctIndex) {
-
         isCorrect.value = true;
+        isProcessing.value = true;
+        
+        // Show a good image immediately on success
+        if (currentQuestionIndex.value !== questions.length - 1) {
+            currentImage.value = getRandomItem(GOOD_IMAGES);
+        }
+        
         setTimeout(() => {
             if (currentQuestionIndex.value < questions.length - 1) {
                 currentQuestionIndex.value++;
                 selectedIndex.value = null;
                 isCorrect.value = false;
+                isProcessing.value = false;
+                updateTriviaImage();
             } else {
                 emit('completed');
             }
-        }, 1000);
+        }, 1500);
     } else {
         isCorrect.value = false;
+        // Show a random bad image on mistake, except for the last question
+        if (currentQuestionIndex.value !== questions.length - 1) {
+            currentImage.value = getRandomItem(BAD_IMAGES);
+        }
     }
 };
 
@@ -100,6 +156,20 @@ onUnmounted(() => clearInterval(timerInterval));
     text-align: center;
     color: white;
     max-width: 600px;
+}
+
+.image-feedback-container {
+    position: relative;
+    margin-bottom: 20px;
+    height: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.trivia-img {
+    max-width: 150px;
+    height: auto;
 }
 
 .question-card {
@@ -148,5 +218,9 @@ button.correct {
     color: #ff4757;
     font-weight: bold;
     margin-top: 10px;
+}
+
+.feedback-area {
+    min-height: 40px; /* Reserves space for the error message */
 }
 </style>

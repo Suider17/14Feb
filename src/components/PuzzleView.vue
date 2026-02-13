@@ -59,7 +59,7 @@
 
 <script setup>
 import { ref, computed, onMounted, onUnmounted } from 'vue';
-import puzzleImg from '@/assets/images/puzzle/puzzle_bg.svg';
+import puzzleImg from '@/assets/images/puzzle/puzzle_bg.jpeg';
 
 const emit = defineEmits(['completed']);
 

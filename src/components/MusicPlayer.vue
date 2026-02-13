@@ -5,7 +5,7 @@
       Your browser does not support the audio element.
     </audio>
     <button @click="togglePlay" class="play-btn">
-      {{ isPlaying ? '🔇' : '🔊' }}
+      {{ isPlaying ? '🔊' : '🔇' }}
     </button>
   </div>
 </template>
@@ -27,8 +27,9 @@ const togglePlay = () => {
 
 // Attempt autoplay
 onMounted(() => {
-    // Check if we can autoplay? 
-    // Usually deferred to user interaction, so we might need a "Start" overlay interaction first
+    if (audioPlayer.value) {
+        audioPlayer.value.volume = 0.5;
+    }
 });
 </script>
 

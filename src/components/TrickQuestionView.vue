@@ -1,7 +1,12 @@
 <template>
   <div class="trick-view">
     <div class="image-container">
-       <img :src="currentImage" alt="Trick Image" class="trick-img" />
+       <BluryImage 
+          :src="currentImage" 
+          width="300px" 
+          height="300px" 
+          alt="Trick Image"
+       />
     </div>
     <h2>¿Quieres ser mi San Valentín?</h2>
     <div class="buttons" ref="containerRef">
@@ -25,24 +30,19 @@
 
 <script setup>
 import { ref, computed } from 'vue';
-import startImg from '@/assets/images/trick_start.svg';
-import endImg from '@/assets/images/trick_end.svg';
+import startImg from '@/assets/images/trivia/g2.jpg';
+import { BAD_IMAGES, getRandomItem } from '@/utils/imageSets';
+import BluryImage from './BluryImage.vue';
 
 const yesScale = ref(1);
 const noCount = ref(0);
 const noPosition = ref({ x: 0, y: 0 });
 const noAbsolute = ref(false);
-const containerRef = ref(null); // Reference to the area where buttons exist
-
-const currentImage = computed(() => {
-    return noCount.value > 0 ? endImg : startImg;
-});
+const containerRef = ref(null);
+const currentImage = ref(startImg);
 
 const noStyle = computed(() => {
     // scale shrinks until count is 3, then stops shrinking
-    const scaleFactor = Math.max(0, 3 - Math.min(noCount.value, 3)); 
-    // Logic: 0->1, 1->0.8, 2->0.6, 3->0.4 (example)
-    // Simpler: 1 - (min(count, 3) * 0.2) -> 1, 0.8, 0.6, 0.4
     const currentScale = 1 - (Math.min(noCount.value, 3) * 0.2);
 
     const style = {
@@ -59,11 +59,11 @@ const noStyle = computed(() => {
 });
 
 const handleNoClick = () => {
-    // Only grow Yes button up to 3 times (1 + 0.5*3 = 2.5 max)
     if (noCount.value < 3) {
         yesScale.value += 0.5;
     }
     noCount.value++;
+    currentImage.value = getRandomItem(BAD_IMAGES);
     moveNoButton();
 };
 
@@ -99,11 +99,10 @@ const moveNoButton = () => {
   color: white;
 }
 
-.image-container img {
-  max-width: 100%;
-  height: auto;
-  max-height: 40vh;
-  border-radius: 10px;
+.image-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   margin-bottom: 20px;
 }
 
