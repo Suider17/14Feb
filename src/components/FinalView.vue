@@ -1,7 +1,7 @@
 <template>
   <div class="final-view">
     <div class="final-content">
-      <h1>Devoción</h1>
+      <h1 class="title">Devoción</h1>
       <p class="message-text">
         Y ahora te amo más, porque te descubro más humana,
         porque, siendo deidad, bajaste a mi mundo.
@@ -31,8 +31,9 @@ import Carousel from './Carousel.vue';
   z-index: 20;
   display: flex;
   flex-direction: column;
-  justify-content: center; /* Vertically center the content */
-  align-items: center;     /* Horizontally center */
+  justify-content: flex-start; /* Pin to top to avoid pushing carousel too far */
+  align-items: center;
+  padding-top: 20px;
 }
 
 .final-content {
@@ -43,23 +44,30 @@ import Carousel from './Carousel.vue';
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 20px;
+  padding: 10px;
+}
+
+.title {
+  font-size: 2rem;
+  margin-bottom: 5px;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
 }
 
 .message-text {
   max-width: 600px;
-  margin: 20px auto;
-  font-size: 1.2rem;
-  line-height: 1.6;
-  background: rgba(0, 0, 0, 0.4); /* Darker background */
-  padding: 25px;
+  margin: 5px auto;
+  font-size: 1.1rem;
+  line-height: 1.4;
+  background: rgba(0, 0, 0, 0.4);
+  padding: 15px 20px;
   border-radius: 15px;
   box-shadow: 0 4px 15px rgba(0,0,0,0.3);
   white-space: pre-line;
-  text-align: left; /* Better for verses */
+  text-align: center; /* Back to centered for better carousel alignment */
 }
 
 .carousel-container {
-  margin-top: 30px;
+  margin-top: 15px;
+  width: 100%;
 }
 </style>

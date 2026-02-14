@@ -210,7 +210,8 @@ const handlePointerUp = (event) => {
 
 const getRandomPosition = () => {
         const x = Math.random() * (window.innerWidth * 0.8) + (window.innerWidth * 0.1);
-        const y = Math.random() * (window.innerHeight * 0.3) + (window.innerHeight * 0.6);
+        // Ensure pieces stay in the bottom area (e.g., 70% to 90% of screen height)
+        const y = Math.random() * (window.innerHeight * 0.2) + (window.innerHeight * 0.75);
         return {
             x: x - 40,
             y: y - 40
