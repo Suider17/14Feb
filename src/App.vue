@@ -6,11 +6,11 @@
     <main class="content">
       <CountdownView v-if="currentPhase === 'COUNTDOWN'" @start="nextPhase" />
       <TrickQuestionView v-else-if="currentPhase === 'TRICK'" @completed="nextPhase" />
-      <TransitionScreen v-else-if="currentPhase === 'TRANSITION_1'" @completed="nextPhase" :text="'¡Sabía que dirías que sí!'" buttonText="¡Vamos! 🚀" />
+      <TransitionScreen v-else-if="currentPhase === 'TRANSITION_1'" @completed="nextPhase" :text="'¡Sabía que dirías que sí!'" buttonText="Siguiente" />
       <PuzzleView v-else-if="currentPhase === 'PUZZLE'" @completed="nextPhase" />
-      <TransitionScreen v-else-if="currentPhase === 'TRANSITION_2'" @completed="nextPhase" :text="'¡Eres increíble armando rompecabezas!'" buttonText="¡A por la trivia! 🧠" />
+      <TransitionScreen v-else-if="currentPhase === 'TRANSITION_2'" @completed="nextPhase" :text="'¡Uy, esa mami rompecabecista!'" buttonText="Ya casi acabamos 🥵" />
       <TriviaView v-else-if="currentPhase === 'TRIVIA'" @completed="nextPhase" />
-      <TransitionScreen v-else-if="currentPhase === 'TRANSITION_3'" @completed="nextPhase" :text="'¡Felicidades, lograste todo!'" :showFireworks="true" buttonText="Ver sorpresa final ✨" />
+      <TransitionScreen v-else-if="currentPhase === 'TRANSITION_3'" @completed="nextPhase" :text="'¡Tremenda esa reina!'" :showFireworks="true" buttonText="Ir al final " />
       <FinalView v-else-if="currentPhase === 'FINAL'" />
     </main>
   </div>

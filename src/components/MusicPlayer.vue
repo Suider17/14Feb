@@ -28,7 +28,7 @@ const togglePlay = () => {
 // Attempt autoplay
 onMounted(() => {
     if (audioPlayer.value) {
-        audioPlayer.value.volume = 0.5;
+        audioPlayer.value.volume = 0.2;
     }
 });
 </script>

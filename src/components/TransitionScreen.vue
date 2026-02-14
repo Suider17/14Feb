@@ -45,6 +45,20 @@ onMounted(() => {
   color: white;
   animation: fadeIn 1s;
   padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+.transition-screen h1 {
+  font-size: 2rem;
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+  background: rgba(0, 0, 0, 0.3);
+  padding: 8px 10px;
+  border-radius: 15px;
+  margin: 16px 0;
 }
 
 .image-container {

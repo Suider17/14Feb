@@ -1,10 +1,14 @@
 <template>
   <div class="final-view">
     <div class="final-content">
-      <h1>¡Feliz San Valentín! ❤️</h1>
+      <h1>Devoción</h1>
       <p class="message-text">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-        (Aquí irá tu mensaje especial)
+        Y ahora te amo más, porque te descubro más humana,
+        porque, siendo deidad, bajaste a mi mundo.
+        Siendo pureza, te revolcaste conmigo en lo inmundo.
+        Siento por dentro cómo esto emana,
+        casi como en el pecho, una orden del destino.
+        Te cuidaré siempre, mi amuleto entre lo terrenal y lo divino.
       </p>
       <div class="carousel-container">
         <Carousel />
@@ -46,11 +50,13 @@ import Carousel from './Carousel.vue';
   max-width: 600px;
   margin: 20px auto;
   font-size: 1.2rem;
-  line-height: 1.5;
+  line-height: 1.6;
   background: rgba(0, 0, 0, 0.4); /* Darker background */
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+  padding: 25px;
+  border-radius: 15px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+  white-space: pre-line;
+  text-align: left; /* Better for verses */
 }
 
 .carousel-container {

@@ -101,8 +101,8 @@ onUnmounted(() => clearInterval(interval));
 }
 
 .controls button {
-    background: rgba(0,0,0,0.5);
-    color: white;
+    background: rgba(0,0,0,0);
+    color: rgba(0,0,0,0);
     border: none;
     font-size: 2rem;
     padding: 10px;

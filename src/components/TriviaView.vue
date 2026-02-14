@@ -48,19 +48,22 @@ const LAST_QUESTION_IMAGE = 'src/assets/images/trivia/LastQimage.jpg'; // Specif
 
 const questions = [
   {
-    text: "¿Cuál es mi color favorito?",
-    options: ["Rojo", "Azul", "Rosa", "Verde"],
-    correctIndex: 2
-  },
-  {
-    text: "¿Dónde fue nuestra primera cita?",
-    options: ["Cine", "Parque", "Restaurante", "Playa"],
+    text: "¿Cuándo es nuestro aniversario?",
+    options: ["14 Feb", "4 Oct", "30 May", "11 Jun"],
     correctIndex: 1
   },
   {
-    text: "¿Qué comida amo más?",
-    options: ["Pizza", "Sushi", "Tacos", "Hamburguesa"],
-    correctIndex: 1
+    text: "Chi é la migliore dottoressa?",
+    options: ["Io sono", "Non lo so", "Chissà", "Nessuno"],
+    correctIndex: 0
+  },
+  {
+    text: "Paciente con acidosis metabólica hiperclorémica, pH urinario > 5.5 e hipokalemia. ¿Cuál es el defecto primario?",
+    options: ["Disminución de reabsorción de bicarbonato en túbulo proximal", 
+            "Disminución de secreción de H⁺ en túbulo distal",
+            "Aumento de producción de ácidos orgánicos",
+            "Hiperaldosteronismo secundario"],
+    correctIndex:1
   }
 ];
 
@@ -127,7 +130,7 @@ const selectOption = (index) => {
 
 // Timer logic reused
 // Timer logic reused from PuzzleView
-const timeLeft = ref(30.0); // Start at 30s
+const timeLeft = ref(120.0); // Start at 30s
 const isCritical = ref(false);
 let timerInterval = null;
 
@@ -156,6 +159,29 @@ onUnmounted(() => clearInterval(timerInterval));
     text-align: center;
     color: white;
     max-width: 600px;
+}
+
+.timer {
+    font-size: 2rem;
+    font-family: 'Courier New', Courier, monospace;
+    margin: 15px 0;
+    font-weight: bold;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+    background: rgba(0, 0, 0, 0.2);
+    padding: 5px 15px;
+    border-radius: 10px;
+    display: inline-block;
+}
+
+.timer.critical {
+    color: #ff4757;
+    animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
 }
 
 .image-feedback-container {

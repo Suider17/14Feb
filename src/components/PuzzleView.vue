@@ -4,7 +4,7 @@
     <div class="timer" :class="{ critical: isCritical }">
         Tiempo: {{ displayTime }}s
     </div>
-    <button @click="$emit('completed')" class="debug-skip">Skip ⏩</button>
+    <!-- <button @click="$emit('completed')" class="debug-skip">Skip ⏩</button> -->
     
     <div class="game-area">
         <!-- Target Grid -->
@@ -217,7 +217,7 @@ const getRandomPosition = () => {
         };
 };
 
-const timeLeft = ref(30.0);
+const timeLeft = ref(60.0);
 const isCritical = ref(false);
 let timerInterval = null;
 
@@ -272,6 +272,15 @@ const checkWin = () => {
     flex-direction: column;
     align-items: center;
     overflow: hidden; /* Contain falling pieces */
+}
+
+.puzzle-view h2 {
+    font-size: 2rem;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.6);
+    background: rgba(0, 0, 0, 0.3);
+    padding: 8px 8px;
+    border-radius: 15px;
+    margin-top: 4px;
 }
 
 .game-area {
