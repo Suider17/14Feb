@@ -1,6 +1,6 @@
 <template>
   <div class="trivia-view">
-    <h2>Trivia de Amor</h2>
+    <h2>Trivia puchunguita</h2>
     
     <div class="image-feedback-container">
       <BluryImage 

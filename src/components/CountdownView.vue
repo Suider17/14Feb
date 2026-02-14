@@ -43,7 +43,7 @@ import { ref, computed, onMounted, onUnmounted } from 'vue';
 import Carousel from './Carousel.vue';
 import FireworksEffect from './FireworksEffect.vue';
 
-const targetDate = new Date('2026-02-13T20:35:00'); // Fixed to 2026 for now based on user context
+const targetDate = new Date('2026-02-14T12:00:00'); // Fixed to 2026 for now based on user context
 const now = ref(new Date());
 let timer = null;
 
